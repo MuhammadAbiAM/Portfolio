@@ -763,39 +763,40 @@
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form id="contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
-
+            
                 <div class="col-md-6">
                   <label for="name-field" class="pb-2">Nama Anda</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
+                  <input type="text" name="name" id="name-field" class="form-control" required>
                 </div>
-
+            
                 <div class="col-md-6">
                   <label for="email-field" class="pb-2">Email Anda</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
+                  <input type="email" class="form-control" name="email" id="email-field" required>
                 </div>
-
+            
                 <div class="col-md-12">
                   <label for="subject-field" class="pb-2">Subyek</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
+                  <input type="text" class="form-control" name="subject" id="subject-field" required>
                 </div>
-
+            
                 <div class="col-md-12">
                   <label for="message-field" class="pb-2">Pesan</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                  <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
                 </div>
-
+            
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Pesan Anda telah terkirim. Terima Kasih!</div>
-
+            
                   <button type="submit">Kirim Pesan</button>
                 </div>
-
+            
               </div>
             </form>
+            
           </div><!-- End Contact Form -->
 
         </div>
@@ -845,5 +846,31 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init('jm9xImV5A2wLt-7tO'); // Ganti dengan PUBLIC KEY kamu
+  })();
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop form submit default
+    
+    // Tampilkan loading
+    document.querySelector('.loading').style.display = 'block';
+    document.querySelector('.error-message').style.display = 'none';
+    document.querySelector('.sent-message').style.display = 'none';
+
+    emailjs.sendForm('service_bvauzbj', 'template_c7nw0sh', this)
+      .then(function() {
+          document.querySelector('.loading').style.display = 'none';
+          document.querySelector('.sent-message').style.display = 'block';
+      }, function(error) {
+          document.querySelector('.loading').style.display = 'none';
+          document.querySelector('.error-message').style.display = 'block';
+          document.querySelector('.error-message').innerHTML = 'Gagal mengirim pesan. Error: ' + error.text;
+      });
+  });
+</script>
 
 </html>
