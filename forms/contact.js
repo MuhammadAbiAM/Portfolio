@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
+        event.stopPropagation(); 
 
         document.querySelector('.loading').style.display = 'block';
         document.querySelector('.error-message').style.display = 'none';
@@ -22,5 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelector('.error-message').style.display = 'block';
                 document.querySelector('.error-message').innerHTML = 'Gagal mengirim pesan. Error: ' + error.text;
             });
+
+        return false;
     });
 });
