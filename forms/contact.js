@@ -1,22 +1,26 @@
 (function () {
-    emailjs.init('jm9xImV5A2wLt-7tO');
+    emailjs.init('YOUR_PUBLIC_KEY'); // Ganti dengan public key kamu
 })();
 
-document.getElementById('contact-form').addEventListener('submit', function (event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contact-form');
 
-    // Tampilkan loading
-    document.querySelector('.loading').style.display = 'block';
-    document.querySelector('.error-message').style.display = 'none';
-    document.querySelector('.sent-message').style.display = 'none';
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Mencegah form submit ke server
 
-    emailjs.sendForm('service_bvauzbj', 'template_c7nw0sh', this)
-        .then(function () {
-            document.querySelector('.loading').style.display = 'none';
-            document.querySelector('.sent-message').style.display = 'block';
-        }, function (error) {
-            document.querySelector('.loading').style.display = 'none';
-            document.querySelector('.error-message').style.display = 'block';
-            document.querySelector('.error-message').innerHTML = 'Gagal mengirim pesan. Error: ' + error.text;
-        });
+        document.querySelector('.loading').style.display = 'block';
+        document.querySelector('.error-message').style.display = 'none';
+        document.querySelector('.sent-message').style.display = 'none';
+
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function () {
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.sent-message').style.display = 'block';
+                form.reset(); // Clear form setelah sukses
+            }, function (error) {
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.error-message').style.display = 'block';
+                document.querySelector('.error-message').innerHTML = 'Gagal mengirim pesan. Error: ' + error.text;
+            });
+    });
 });
