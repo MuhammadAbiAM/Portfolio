@@ -27,8 +27,12 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script src="forms/contact.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init('jm9xImV5A2wLt-7tO');
+    })();
+  </script>
 
   <!-- =======================================================
   * Template Name: iPortfolio
@@ -799,7 +803,7 @@
             
               </div>
             </form>
-            
+            <script src="contact.js"></script>
           </div><!-- End Contact Form -->
 
         </div>

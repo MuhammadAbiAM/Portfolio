@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    emailjs.init('jm9xImV5A2wLt-7tO'); // Ganti public key kamu
-
     const form = document.getElementById('contact-form');
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Stop native form submit
+        event.preventDefault();
 
         document.querySelector('.loading').style.display = 'block';
         document.querySelector('.error-message').style.display = 'none';
