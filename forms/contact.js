@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.sent-message').style.display = 'none';
 
         const serviceID = 'service_bvauzbj';
-        const templateID = 'template_c7nw0sh';
+        const templateID = 'template_blyc0lu';
 
         const params = {
             name: form.querySelector('input[name="name"]').value,
